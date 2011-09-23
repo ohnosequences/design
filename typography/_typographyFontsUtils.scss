@@ -1,0 +1,19 @@
+
+
+$BodyTextFont: "PT Sans", "Droid Sans", sans !default;
+$TitleFont: "PT Serif", "Droid Serif", serif !default;
+$MonospaceFont: "Consolas", "Inconsolata", "Droid Sans Mono", "Andale Mono", monospace !default;
+
+@mixin setBodyTextFont {
+	
+	body {	font-family: $BodyTextFont;	}
+}
+
+@mixin setTitleFont {
+	h1, h2, h3, h4, h5, h6 {	font-family: $TitleFont;	}
+}
+
+@mixin setMonoFont {
+	pre, code {	font-family: $MonospaceFont;	}
+}
+

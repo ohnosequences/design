@@ -1,0 +1,49 @@
+/*
+*
+*	default rythm
+*
+*/
+@import "typographyRythmUtils";
+
+@include setBaseRythm;
+@include basicListRythm;
+@include basicBlockquoteRythm;
+@include indentedParagraphs;
+
+h1 {	@include headingRythmFrom($relSize: nth($Scale,8), $relLineHeight: 2, $totalVertSpace: 5, $beforeRatio: 0.666)	}
+h2 {	@include headingRythmFrom($relSize: nth($Scale,7), $relLineHeight: 2, $totalVertSpace: 4, $beforeRatio: 0.666)	}
+h3 {	@include headingRythmFrom($relSize: nth($Scale,6), $relLineHeight: 1.5, $totalVertSpace: 4, $beforeRatio: 0.666)}
+h4 {	@include headingRythmFrom($relSize: nth($Scale,5), $relLineHeight: 1.5, $totalVertSpace: 4, $beforeRatio: 0.666)}
+h5 {	@include headingRythmFrom($relSize: nth($Scale,4), $relLineHeight: 1, $totalVertSpace: 3, $beforeRatio: 0.5)	}
+h6 {	@include headingRythmFrom($relSize: nth($Scale,3), $relLineHeight: 1, $totalVertSpace: 3, $beforeRatio: 0.5)	}
+
+@import "typographyFontsUtils";
+
+@include setBodyTextFont;
+@include setTitleFont;
+@include setMonoFont;
+
+/*	title weights/style/variants etc	*/
+h4 {
+	font {
+		weight: normal;
+		style: normal;
+		variant: small-caps;
+	}
+}
+
+h5 {
+	font {
+		weight: bold;
+		style: normal;		
+	}
+}
+h6 {
+	font {
+		weight: normal;
+		style: italic;
+	}
+}
+
+
+

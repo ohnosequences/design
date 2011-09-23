@@ -1,0 +1,92 @@
+/*
+*
+*	Typography rythm utils
+*
+*/
+
+$BaseFontSize: 1em !default;
+$BaseLineHeight: 1.5em !default;
+$BaseMeasure: 34em !default;
+$BaseIndent: 1em !default;
+/** here scale[3] is the base size **/
+$Scale: 0.6154 0.7692 1 1.2308 1.6154 2 2.6154 3.2308 4.2308 5.2308 !default;
+
+/**
+* headings h1-h6 rythm should add up to an integer in line-height units, so that
+* they should be determined by before, line-height, after. 
+* reqs: base-font-size and line-height;
+**/
+@mixin headingRythmFrom($relSize, $relLineHeight, $totalVertSpace, $beforeRatio ) {
+
+  $rest: $totalVertSpace - $relLineHeight;
+  $topMargin: $rest * $beforeRatio;
+  $bottomMargin: $rest - $topMargin;  
+  font-size: $BaseFontSize * $relSize;
+  line-height: $BaseLineHeight * $relLineHeight;  
+  margin-top: #{$topMargin}em;
+  margin-bottom: #{$bottomMargin}em;
+}
+
+/*    lists styling   */
+@mixin basicListRythm {
+
+  ul, ol, dl {      
+    line-height: $BaseLineHeight;
+    margin-top: $BaseLineHeight;
+    margin-bottom: $BaseLineHeight;
+    margin-left: 2 * $BaseIndent;    
+    list-style-position: outside;
+  }
+
+  ol {    list-style-type: lower-roman;   }
+  ul {    list-style-type: circle;        }
+  dt {    font-weight: bold;              }
+  dd {    margin-bottom: $BaseLineHeight; }
+  
+  li:only-of-type {  
+    margin-top: $BaseLineHeight;
+    margin-bottom: 0em;
+  }
+
+  li {  
+    margin-top: $BaseLineHeight / 2;
+    margin-bottom: $BaseLineHeight / 2;  
+  }
+}
+
+@mixin basicBlockquoteRythm {
+
+  blockquote {
+  
+    margin-top: $BaseLineHeight;
+    margin-bottom: $BaseLineHeight;  
+    margin-left: 2* $BaseIndent; 
+      
+    border-left-width: 2px;
+    border-left-style: dotted;  
+  }  
+}
+
+@mixin indentedParagraphs {
+
+  p:first-of-type { }
+  p {  
+    margin-top:0em;
+    margin-bottom: 0em;
+  }
+  p + p {
+    text-indent: $BaseIndent;
+    margin-top:0em;
+  }
+}
+
+
+@mixin setBaseRythm {
+  
+  body {
+    font-size: $BaseFontSize;
+    line-height: $BaseLineHeight;    
+  }
+}
+
+

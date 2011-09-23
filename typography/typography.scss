@@ -1,0 +1,177 @@
+
+/*                                    TYPOGRAPHY                          
+/***********************************************
+/*  basic typography settings. I'm using a 3:5 Stranded scale, with
+*
+*    base size:     1em     =   16px
+*    line-height:   1.75em  =   28px
+* 
+*   EVERYTHING is set to a rel size (in ems), through the font-size in the body element. If you want to use a base size of 
+*   say 12px, just set the size here to 12/16 = ??
+*
+*/
+
+$BaseFontSize: 1em !default;
+$BaseLineHeight: 1.5em !default;
+$BaseMeasure: 34em !default;
+$BaseIndent: 1em !default;
+/** here scale[3] is the base size **/
+$Scale: 0.6154 0.7692 1 1.2308 1.6154 2 2.6154 3.2308 4.2308 5.2308 !default;
+
+
+/**
+* headings h1-h6 rythm should add up to an integer in line-height units, so that
+* they should be determined by before, line-height, after. 
+* reqs: base-font-size and line-height;
+**/
+@mixin headingRythmFrom($relSize, $relLineHeight, $totalVertSpace, $beforeRatio ) {
+
+  $rest: $totalVertSpace - $relLineHeight;
+  $topMargin: $rest * $beforeRatio;
+  $bottomMargin: $rest - $topMargin;  
+  font-size: $BaseFontSize * $relSize;
+  line-height: $BaseLineHeight * $relLineHeight;  
+  margin-top: #{$topMargin}em;
+  margin-bottom: #{$bottomMargin}em;
+}
+
+/*    lists styling   */
+@mixin baseListRythm {
+
+  ul, ol, dl {      
+    line-height: $BaseLineHeight;
+    margin-top: $BaseLineHeight;
+    margin-bottom: $BaseLineHeight;
+    margin-left: 2 * $BaseIndent;    
+    list-style-position: outside;
+  }
+
+  ol {    list-style-type: lower-roman;   }
+  ul {    list-style-type: circle;        }
+  dt {    font-weight: bold;              }
+  dd {    margin-bottom: $BaseLineHeight; }
+  
+  li:only-of-type {  
+    margin-top: $BaseLineHeight;
+    margin-bottom: 0em;
+  }
+
+  li {  
+    margin-top: $BaseLineHeight / 2;
+    margin-bottom: $BaseLineHeight / 2;  
+  }
+}
+
+@mixin basicBlockquoteRythm {
+
+  blockquote {
+  
+    margin-top: $BaseLineHeight;
+    margin-bottom: $BaseLineHeight;  
+    margin-left: 2* $BaseIndent; 
+      
+    border-left-width: 2px;
+    border-left-style: dotted;  
+  }  
+}
+
+@mixin indentedParagraphs {
+
+  p:first-of-type { }
+  p {  
+    margin-top:0em;
+    margin-bottom: 0em;
+  }
+  p + p {
+    text-indent: $BaseIndent;
+    margin-top:0em;
+  }
+}
+
+
+@mixin setBaseRythm {
+  
+  body {
+    font-size: $BaseFontSize;
+    line-height: $BaseLineHeight;    
+  }
+}
+
+
+h1 {
+  
+  @include headingRythmFrom(                            
+                            $relSize: nth($Scale,7),
+                            $relLineHeight: 2,
+                            $totalVertSpace: 4, 
+                            $beforeRatio: 0.66
+                            )  
+}
+
+h2  {
+
+  @include headingRythmFrom(
+                            $relSize: nth($Scale,6),
+                            $relLineHeight: 2,
+                            $totalVertSpace: 4, 
+                            $beforeRatio: 0.666
+                            )
+}
+
+h3 {
+
+  @include headingRythmFrom(
+                            $relSize: nth($Scale,5),
+                            $relLineHeight: 1.7,
+                            $totalVertSpace: 3,
+                            $beforeRatio: 0.5
+                            )
+}
+
+h4 {
+
+  font-size: 1.2308em;      /*    =      20px = 1em                      */
+    
+  line-height: 1.45em;      /*    =      28px = 1 * base-line-height     */    
+  margin-top: 2.175em;      /*    =      42px = 1.5 * base-line-height   */      
+  margin-bottom: 0.725em;   /*    =      14px = 0.5 * base-line-height   */
+}
+
+h5 {
+
+  font-size: 1em;            /*    =       16px = 1em                     */
+ 
+  line-height: 1.75em;      /*    =       28px = 1 * base-line-height    */
+  margin-top: 1.3125em;     /*    =       ??   = 0.75 * base-line-height */
+  margin-bottom: 0.437em;   /*    =       ??   = 0.25 * base-line-height */
+    
+  text-transform: uppercase;
+}
+
+h6 {
+
+  font-size: 1em;           /*    =       16px = 1em                     */
+    
+  line-height: 1.75em;      /*    =       28px = 1 * base-line-height    */
+  margin-top: 1.3125em;     /*    =       ??   = 0.75 * base-line-height */
+  margin-bottom: 0.437em;   /*    =       ??   = 0.25 * base-line-height */
+  
+  font-weight: bold;
+}
+
+
+
+
+
+
+a {
+  
+  text-decoration: none;
+}
+
+/*    links styling   */
+a:hover {
+  
+  text-decoration: underline;
+}
+
